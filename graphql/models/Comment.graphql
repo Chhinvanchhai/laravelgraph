@@ -1,0 +1,10 @@
+type Comment {
+    id: ID!
+    reply: String!
+    post: Post! @belongsTo
+}
+
+extend type Query {
+    comments: [Comment!]! @all
+    comment(id: Int! @eq): Post @find
+}

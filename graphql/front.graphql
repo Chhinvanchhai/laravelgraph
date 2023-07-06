@@ -1,0 +1,26 @@
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+type User {
+  id: ID!
+  post:  [Post!]! @hasMany
+  name: String!
+  email: String!
+  created_at: String!
+  updated_at: String
+}
+
+
+type loginDdata {
+  token: String!
+  user: User
+}
+
+
+type Mutation {
+  login(
+    email: String!
+    password: String!
+  ): String @field(resolver: "AuthMutator@resolve")
+}
+
